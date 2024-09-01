@@ -13,7 +13,7 @@ The former represents network applications in which there is only one server tha
 
 The later refers to network applications which not use a centralized model, that is, there is not the classic concept about only one server and several clients which attempt to connect to him. Instead, in each Peer-to-Peer (P2P) network application each device (for example a computer, a smartphone, laptop, etc.) is represent by a node in the application network, and each node communicates with the other ones. Thus, in a P2P application, each node represents both a server and a client at the same time. For that, the nodes often are called as a servent, which is a combination of the words "Server" and "Client".
 
-Now, the most use architecture today is still the Client-Server architecture which is present in everything, from bank services, social media, to video-on-demand (VOD) platforms as Youtube, Netflix, Amazon Prime Video, Max, etc.
+Now, the most use architecture today is still the Client-Server architecture which is present in everything, from bank services, social media, video-on-demand (VOD) platforms like Youtube, Netflix, Amazon Prime Video, Max, etc.
 
 Essentially, when we want to create a new network application, we start by creating a new socket.
 
@@ -45,8 +45,21 @@ At the end, we only need to put a infinite loop and within of it call the functi
 - memset() ->This mainly purpose of this functions is to set all memory bytes of the given object with the specified value while called the function.
 - inet_pton() ->This function translate the network address pointed by a char pointer to their 32-bit integer value as a network representation.
 - inet_ntop() -> This function translate the 32-bit integer value network representation to their respectively local host string representation pointed by a char pointer.
-- connect() -> This function is used to attempt to make a connection on a socket. This function recieved as arguments the file descriptor to the socket, an memory address to sockaddr object which store the peer address, and the length of the sockaddr structure passed as a second argument.
-- send() -> 
+- connect() -> This function is used to attempt to make a connection on a socket. This function recieved as arguments the file descriptor to the socket, the memory address to sockaddr object which store the peer address, and the length of the sockaddr structure passed as a second argument.
+  
+  If the connection is established sucessfully, then the function returns 0, otherwise it shall returns -1 and set the errno variable to indicate the error.
+  
+  Is important to remark that the socket in use may require the process to have appropiate privileges to use the **connect()** function.
+
+- send() -> This function is used to initiate the transmission of a message from the specified socket to its peer. This function shall send the message only when the socket is connected via the **connect()** function (including when the peer of a connectionless socket has been set).
+  
+  This function takes the following arguments.
+  
+	- **socket**: This arguments specifies the socket file descriptor that will be use to convey/transmit the message.
+	- **buffer**: A char pointer to point the buffer containing the message to send.
+	- **length**: This argument specifies the length of the message measured in bytes.
+	- **flags**
+  
 - recv()
 - close()
 - bind()
